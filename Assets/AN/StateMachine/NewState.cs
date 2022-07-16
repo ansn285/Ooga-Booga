@@ -7,7 +7,9 @@ namespace AN.StateMachine
     [CreateAssetMenu(fileName = "NewState", menuName = "StateMachine/States/New State")]
     public class NewState : ScriptableObject
     {
-        [SerializeField] protected Transition NextTransition;
+        [SerializeField] public bool HasExitTime;
+        [SerializeField] public Transition NextTransition;
+        [SerializeField] public float ExitTime;
         
         protected IState _Listener;
 
