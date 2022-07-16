@@ -46,13 +46,6 @@ namespace Gameplay.Player
 
             
             MoveOnGlobalAxis();
-
-            if ((_movementVector.z > 0 && !Refs.AllowForwardMovement) ||
-                (_movementVector.z < 0 && !Refs.AllowBackwardMovement))
-            {
-                _movementVector.z = 0;
-                Rigidbody.velocity = Vector3.zero;
-            }
         }
 
         #region Movement Methods
@@ -91,11 +84,11 @@ namespace Gameplay.Player
                 RotatePlayer(_movementVector.x, _movementVector.z);
                 AddInstantVelocity();
 
-                // if (!Refs.AllowForwardMovement)
-                // {
-                //     _movementVector.z = 0;
-                //     Rigidbody.velocity = Vector3.zero;
-                // }
+                if (!Refs.AllowForwardMovement)
+                {
+                    _movementVector = Vector3.zero;
+                    Rigidbody.velocity = Vector3.zero;
+                }
             }
 
             if (_movementVector.x != 0)
