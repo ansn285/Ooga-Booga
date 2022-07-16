@@ -890,6 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllowForwardMovement: {fileID: 11400000, guid: c9fa7fa2a1cb89d4c814510323eed9f9, type: 2}
   AllowBackwardMovement: {fileID: 11400000, guid: f0a9b877b6cdf8a4ba4c8caff9676d4a, type: 2}
+  FrontRayEndPos: {x: 0, y: -20, z: 10}
 --- !u!114 &-5120594339270666772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,8 +904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanMove: 0
-  AllowForwardMovement: {fileID: 11400000, guid: f0a9b877b6cdf8a4ba4c8caff9676d4a, type: 2}
-  AllowBackwardMovement: {fileID: 11400000, guid: c9fa7fa2a1cb89d4c814510323eed9f9, type: 2}
+  AllowForwardMovement: {fileID: 11400000, guid: c9fa7fa2a1cb89d4c814510323eed9f9, type: 2}
+  AllowBackwardMovement: {fileID: 11400000, guid: f0a9b877b6cdf8a4ba4c8caff9676d4a, type: 2}
   MovementConfig: {fileID: 11400000, guid: 6199d48fb62b61d49803e79bc4848afe, type: 2}
   PlayerCollision: {fileID: -7021750314645500429}
 --- !u!114 &-7021750314645500429
