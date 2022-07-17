@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace AN.StateMachine
 {
-    [CreateAssetMenu(fileName = "NewState", menuName = "StateMachine/States/New State")]
+    [CreateAssetMenu(fileName = "NewState", menuName = "State Machine/States/New State")]
     public class NewState : ScriptableObject
     {
         [SerializeField] protected Transition NextTransition;
         [SerializeField] protected bool HasExitTime;
         [SerializeField] protected float ExitTime;
 
-        protected IState _Listener;
+        protected INewState _Listener;
 
-        public virtual void Init(IState listener)
+        public virtual void Init(INewState listener)
         {
             _Listener = listener;
         }
