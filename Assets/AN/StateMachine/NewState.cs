@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AN.StateMachine
@@ -7,21 +6,20 @@ namespace AN.StateMachine
     [CreateAssetMenu(fileName = "NewState", menuName = "StateMachine/States/New State")]
     public class NewState : ScriptableObject
     {
-        [SerializeField] public bool HasExitTime;
-        [SerializeField] public Transition NextTransition;
-        [SerializeField] public float ExitTime;
-        
+        [SerializeField] protected Transition NextTransition;
+        [SerializeField] protected bool HasExitTime;
+        [SerializeField] protected float ExitTime;
+
         protected IState _Listener;
 
-        public virtual IEnumerator Init(IState listener)
+        public virtual void Init(IState listener)
         {
             _Listener = listener;
-            yield break;
         }
 
-        public virtual IEnumerator Execute()
+        public virtual void Execute()
         {
-            yield break;
+            
         }
 
         public virtual IEnumerator Tick()
@@ -29,24 +27,24 @@ namespace AN.StateMachine
             yield break;
         }
 
-        public virtual IEnumerator Exit()
+        public virtual void Exit()
         {
-            yield break;
+            
         }
 
-        public virtual IEnumerator Resume()
+        public virtual void Resume()
         {
-            yield break;
+            
         }
 
-        public virtual IEnumerator Pause(bool hideView)
+        public virtual void Pause(bool hideView)
         {
-            yield break;
+            
         }
 
-        public virtual IEnumerator Cleanup()
+        public virtual void Cleanup()
         {
-            yield break;
+            
         }
 
         protected virtual void End()
