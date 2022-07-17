@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ApplicationBase;
 using UnityEngine;
 
 namespace AN.StateMachine
@@ -16,7 +17,8 @@ namespace AN.StateMachine
 
         [NonSerialized] private NewTransition BackTransition;
         [NonSerialized] private Stack<NewState> PausedStates = new Stack<NewState>();
-
+        [NonSerialized] private ITransitionToNextState _Listener;
+        
         public NewState RunningState
         {
             get
@@ -37,6 +39,7 @@ namespace AN.StateMachine
             if (canTransition)
             {
                 CurrentTransition = transition;
+                _Listener.TransitionToNextState();
             }
         }
 
@@ -59,7 +62,31 @@ namespace AN.StateMachine
             }
         }
 
-        public IEnumerator Tick()
+        public void Init(ITransitionToNextState listener)
+        {
+            _Listener = listener;
+        }
+
+        // public IEnumerator Tick()
+        // {
+            // yield break;
+            // if (CurrentTransition == null) yield break;
+            //
+            // if (CurrentState == null)
+            // {
+            //     ChangeState(BootState);
+            //     BackTransition = CreateInstance<NewTransition>();
+            // }
+            //
+            // while (true)
+            // {
+            //     yield return CheckTransition();
+            //     yield return CurrentState.Tick();
+            //     yield return null;
+            // }
+        // }
+
+        public IEnumerator TransitionToNextState()
         {
             if (CurrentState == null)
             {
@@ -67,12 +94,8 @@ namespace AN.StateMachine
                 BackTransition = CreateInstance<NewTransition>();
             }
 
-            while (true)
-            {
-                yield return CheckTransition();
-                yield return CurrentState.Tick();
-                yield return null;
-            }
+            yield return CheckTransition();
+            yield return CurrentState.Tick();
         }
 
         private IEnumerator CheckTransition()
@@ -81,7 +104,7 @@ namespace AN.StateMachine
             {
                 if (CurrentTransition == BackTransition && PausedStates.Count > 0)
                 {
-                    ResumePreviousState();
+                    yield return ResumePreviousState();
                 }
 
                 else if (CurrentTransition.ToState != null)
@@ -94,8 +117,19 @@ namespace AN.StateMachine
                     CurrentTransition = null;
                 }
             }
+        }
 
-            yield break;
+        private IEnumerator ResumePreviousState()
+        {
+            CurrentState.Exit();
+
+            if (CurrentState.HasExitTime)
+            {
+                yield return new WaitForSeconds(CurrentState.ExitTime);
+            }
+
+            SetState(PausedStates.Pop());
+            CurrentState.Resume();
         }
 
         private IEnumerator ExecuteTransition()
@@ -109,18 +143,15 @@ namespace AN.StateMachine
             else
             {
                 CurrentState.Exit();
+                
+                if (CurrentState.HasExitTime)
+                {
+                    yield return new WaitForSeconds(CurrentState.ExitTime);
+                }
             }
 
             CurrentTransition.Execute();
             ChangeState(CurrentTransition.ToState);
-            yield break;
-        }
-
-        private void ResumePreviousState()
-        {
-            CurrentState.Exit();
-            SetState(PausedStates.Pop());
-            CurrentState.Resume();
         }
 
         private void ChangeState(NewState state)

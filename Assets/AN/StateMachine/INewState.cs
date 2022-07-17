@@ -1,4 +1,6 @@
-﻿namespace AN.StateMachine
+﻿using System.Collections;
+
+namespace AN.StateMachine
 {
     public interface INewState
     {

@@ -6,9 +6,10 @@ namespace AN.StateMachine
     [CreateAssetMenu(fileName = "NewState", menuName = "State Machine/States/New State")]
     public class NewState : ScriptableObject
     {
+        [SerializeField] public bool HasExitTime;
+        [SerializeField] public float ExitTime;
+        
         [SerializeField] protected Transition NextTransition;
-        [SerializeField] protected bool HasExitTime;
-        [SerializeField] protected float ExitTime;
 
         protected INewState _Listener;
 
@@ -29,7 +30,7 @@ namespace AN.StateMachine
 
         public virtual void Exit()
         {
-            return;
+            
         }
 
         public virtual void Resume()
