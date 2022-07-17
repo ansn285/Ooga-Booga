@@ -29,7 +29,7 @@ namespace AN.StateMachine
 
         public virtual void Exit()
         {
-            
+            return;
         }
 
         public virtual void Resume()
