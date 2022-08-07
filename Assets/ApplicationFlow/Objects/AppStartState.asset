@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1e1e3735687ac40acbb5e2ee82a234, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b57a18267d34caeb616a7c882fb9bd3, type: 3}
   m_Name: AppStartState
   m_EditorClassIdentifier: 
-  NextTransition: {fileID: 11400000, guid: dca3992a9af3f8246be387661246de12, type: 2}
+  HasExitTime: 0
+  ExitTime: 0
+  NextTransition: {fileID: 11400000, guid: eec341463a1e9d04896821493bf77c86, type: 2}

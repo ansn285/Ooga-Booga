@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 288a8fc2d15424640bd489bf893189c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bb4c4264b6f43c69fa424da06068f5d, type: 3}
   m_Name: MainMenuState
   m_EditorClassIdentifier: 
-  NextTransition: {fileID: 11400000, guid: 7c953b2cb5e1a5a47bd9fb7a42d3c551, type: 2}
+  HasExitTime: 1
+  ExitTime: 1.5
+  NextTransition: {fileID: 11400000, guid: dc00abe77d3c9a645ad708d608924931, type: 2}
+  UIViewConfig: {fileID: 11400000, guid: 45c806bff516f114bab05af316901d9c, type: 2}
   ViewName: MainMenuView
   SettingsTransition: {fileID: 11400000, guid: 1cf9b34c9ab70b64aa53190b3608356e, type: 2}
   QuitGameTransition: {fileID: 0}
-  CurrentLevel: {fileID: 11400000, guid: 5ae4cf2764519e244b85b46541d5dcf9, type: 2}
-  LevelsCollection: {fileID: 11400000, guid: ed620b55d9dda53458f7e69bd5e78177, type: 2}
-  PlayerPrefab: {fileID: 5332168381691950785, guid: e1ed142bab39184458c17942cabc4488, type: 3}
-  PlayerPosition: {fileID: 11400000, guid: fe7ad636dab339b4c98fcccec6cd3ae5, type: 2}

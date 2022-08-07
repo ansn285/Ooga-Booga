@@ -1,10 +1,9 @@
-using System;
+﻿using System;
 using System.Collections;
-using UnityEngine;
-
 using AN.Variables;
 using Gameplay.Player;
 using UI.Views;
+using UnityEngine;
 
 namespace AN.StateMachine
 {
@@ -21,9 +20,9 @@ namespace AN.StateMachine
 
         protected Player _player;
 
-        public override IEnumerator Init(IState listener)
+        public override void Init(IState listener)
         {
-            yield return base.Init(listener);
+            base.Init(listener);
 
             _gameHud = Instantiate(GameHudPrefab);
             _gameHud.GameState = this;

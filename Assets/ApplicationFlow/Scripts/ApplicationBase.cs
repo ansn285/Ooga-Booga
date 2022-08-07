@@ -4,12 +4,17 @@ using AN.StateMachine;
 
 namespace ApplicationBase
 {
-    public class ApplicationBase : MonoBehaviour
+    public class ApplicationBase : MonoBehaviour, ITransitionToNextState
     {
-        [SerializeField] private FiniteStateMachine AppStateMachine;
+        [SerializeField] private FiniteStateMachine FiniteStateMachine;
         private void Start()
         {
-            StartCoroutine(AppStateMachine.Tick());
+            FiniteStateMachine.Init(this);
+        }
+
+        void ITransitionToNextState.TransitionToNextState()
+        {
+            StartCoroutine(FiniteStateMachine.TransitionToNextState());
         }
     }
 }

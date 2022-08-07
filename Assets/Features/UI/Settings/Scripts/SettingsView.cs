@@ -7,20 +7,11 @@ namespace UI.Views
 {
     public class SettingsView : UIView
     {
-        [SerializeField] private CanvasGroup CanvasGroup;
-
         private SettingsViewState SettingsViewState => UIViewState as SettingsViewState;
-        private Vector3 _originalScale;
+        
         private Sequence _viewAnimationSequence;
 
         #region Mono Methods
-
-        private void OnEnable()
-        {
-            CanvasGroup.DOFade(0, 0f);
-            _originalScale = Container.localScale;
-            Container.localScale += Vector3.one * ViewConfig.ViewScaleFactor;
-        }
 
         private void OnDisable()
         {
@@ -39,10 +30,8 @@ namespace UI.Views
 
         #region Overridden Methods
 
-        public override IEnumerator Show()
+        protected override IEnumerator PlayShowAnimation()
         {
-            yield return base.Show();
-
             _viewAnimationSequence?.Kill();
             _viewAnimationSequence = DOTween.Sequence()
                               .Join(CanvasGroup.DOFade(1, ViewConfig.ViewInDuration))
@@ -52,7 +41,7 @@ namespace UI.Views
             yield break;
         }
 
-        public override IEnumerator Hide()
+        protected override IEnumerator PlayHideAnimation()
         {
             _viewAnimationSequence?.Kill();
             _viewAnimationSequence = DOTween.Sequence()
@@ -61,8 +50,6 @@ namespace UI.Views
                               .SetEase(ViewConfig.PanelInEase);
 
             yield return _viewAnimationSequence.Play().WaitForCompletion();
-
-            yield return base.Hide();
         }
 
         #endregion

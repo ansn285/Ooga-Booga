@@ -1,40 +1,36 @@
-using System;
-using System.Collections;
-
-using UnityEngine;
-
+﻿using System;
 using AN.StateMachine;
+using UnityEngine;
 
 namespace UI.Views
 {
-    [CreateAssetMenu(fileName = "UIViewState", menuName = "State Machine/States/UI View State")]
     public class UIViewState : State
     {
+        [SerializeField] public UIViewConfig UIViewConfig;
+        
         [SerializeField] protected string ViewName;
-
+        
         [NonSerialized] protected UIView _view;
         [NonSerialized] protected bool? hidden = null;
 
-        public override IEnumerator Init(IState listener)
+        public override void Init(IState listener)
         {
-            yield return base.Init(listener);
+            base.Init(listener);
             DestroyView();
 
             _view = Instantiate(Resources.Load<UIView>(ViewName));
-            _view.UIViewState = this;
-
-            yield return new WaitUntil(() => _view != null);
+            _view.Init(this);
         }
 
-        public override IEnumerator Execute()
+        public override void Execute()
         {
-            yield return base.Execute();
-            yield return _view.Show();
+            base.Execute();
+            _view.Show();
         }
 
-        public override IEnumerator Pause(bool hideView)
+        public override void Pause(bool hideView)
         {
-            yield return base.Pause(hideView);
+            base.Pause(hideView);
 
             if (hideView)
             {
@@ -44,9 +40,9 @@ namespace UI.Views
             hidden = true;
         }
 
-        public override IEnumerator Resume()
+        public override void Resume()
         {
-            yield return base.Resume();
+            base.Resume();
 
             if (hidden.HasValue && hidden.Value)
             {
@@ -54,28 +50,28 @@ namespace UI.Views
             }
         }
 
-        public override IEnumerator Exit()
+        public override void Exit()
         {
             if (_view != null)
             {
-                yield return _view.Hide();
+                _view.Hide();
                 DestroyView();
             }
 
-            yield return base.Exit();
+            base.Exit();
         }
 
-        public override IEnumerator Cleanup()
+        public override void Cleanup()
         {
             DestroyView();
-            yield return base.Cleanup();
+            base.Cleanup();
         }
 
         protected virtual void DestroyView()
         {
             if (_view != null)
             {
-                Destroy(_view.gameObject);
+                Destroy(_view.gameObject, UIViewConfig.ViewOutDuration);
             }
 
             _view = null;

@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ApplicationBase;
 using UnityEngine;
 
 namespace AN.StateMachine
 {
-    [CreateAssetMenu(fileName = "StateMachine", menuName = "State Machine/Basic FSM")]
+    [CreateAssetMenu(fileName = "NewStateMachine", menuName = "State Machine/FSM")]
     public class FiniteStateMachine : ScriptableObject, IState
     {
         [SerializeField] public State BootState;
@@ -16,7 +17,8 @@ namespace AN.StateMachine
 
         [NonSerialized] private Transition BackTransition;
         [NonSerialized] private Stack<State> PausedStates = new Stack<State>();
-
+        [NonSerialized] private ITransitionToNextState _Listener;
+        
         public State RunningState
         {
             get
@@ -37,6 +39,7 @@ namespace AN.StateMachine
             if (canTransition)
             {
                 CurrentTransition = transition;
+                _Listener.TransitionToNextState();
             }
         }
 
@@ -48,32 +51,52 @@ namespace AN.StateMachine
             }
         }
 
-        IEnumerator IState.CleanupAllPausedStates(State state)
+        void IState.CleanupAllPausedStates(State state)
         {
             if (state == CurrentState)
             {
                 while (PausedStates.Count > 0)
                 {
-                    yield return PausedStates.Pop().Cleanup();
+                    PausedStates.Pop().Cleanup();
                 }
             }
-            yield break;
         }
 
-        public IEnumerator Tick()
+        public void Init(ITransitionToNextState listener)
+        {
+            _Listener = listener;
+            _Listener.TransitionToNextState();
+        }
+
+        // public IEnumerator Tick()
+        // {
+            // yield break;
+            // if (CurrentTransition == null) yield break;
+            //
+            // if (CurrentState == null)
+            // {
+            //     ChangeState(BootState);
+            //     BackTransition = CreateInstance<NewTransition>();
+            // }
+            //
+            // while (true)
+            // {
+            //     yield return CheckTransition();
+            //     yield return CurrentState.Tick();
+            //     yield return null;
+            // }
+        // }
+
+        public IEnumerator TransitionToNextState()
         {
             if (CurrentState == null)
             {
-                yield return ChangeState(BootState);
+                ChangeState(BootState);
                 BackTransition = CreateInstance<Transition>();
             }
 
-            while (true)
-            {
-                yield return CheckTransition();
-                yield return CurrentState.Tick();
-                yield return null;
-            }
+            yield return CheckTransition();
+            yield return CurrentState.Tick();
         }
 
         private IEnumerator CheckTransition()
@@ -95,8 +118,19 @@ namespace AN.StateMachine
                     CurrentTransition = null;
                 }
             }
+        }
 
-            yield break;
+        private IEnumerator ResumePreviousState()
+        {
+            CurrentState.Exit();
+
+            if (CurrentState.HasExitTime)
+            {
+                yield return new WaitForSeconds(CurrentState.ExitTime);
+            }
+
+            SetState(PausedStates.Pop());
+            CurrentState.Resume();
         }
 
         private IEnumerator ExecuteTransition()
@@ -104,32 +138,30 @@ namespace AN.StateMachine
             if (CurrentTransition.PausesPreviousState)
             {
                 PausedStates.Push(CurrentState);
-                yield return CurrentState.Pause(CurrentTransition.HidesPreviousStateOnPause);
+                CurrentState.Pause(CurrentTransition.HidesPreviousStateOnPause);
             }
 
             else
             {
-                yield return CurrentState.Exit();
+                CurrentState.Exit();
+                
+                if (CurrentState.HasExitTime)
+                {
+                    yield return new WaitForSeconds(CurrentState.ExitTime);
+                }
             }
 
-            yield return CurrentTransition.Execute();
-            yield return ChangeState(CurrentTransition.ToState);
+            CurrentTransition.Execute();
+            ChangeState(CurrentTransition.ToState);
         }
 
-        private IEnumerator ResumePreviousState()
-        {
-            yield return CurrentState.Exit();
-            SetState(PausedStates.Pop());
-            yield return CurrentState.Resume();
-        }
-
-        private IEnumerator ChangeState(State state)
+        private void ChangeState(State state)
         {
             SetState(state);
             CurrentTransition = null;
 
-            yield return CurrentState.Init(this);
-            yield return CurrentState.Execute();
+            CurrentState.Init(this);
+            CurrentState.Execute();
         }
 
         private void SetState(State state)

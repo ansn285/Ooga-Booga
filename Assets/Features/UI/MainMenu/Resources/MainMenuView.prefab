@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3759112989850740568}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI.Views.MainMenuView, Assembly-CSharp
         m_MethodName: ShowQuitGameView
         m_Mode: 1
@@ -319,7 +319,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621896210430924675}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 1621896211338641755}
   - component: {fileID: 1621896211338641754}
   - component: {fileID: 1621896211338641701}
-  - component: {fileID: 3759112989850740568}
+  - component: {fileID: 5679205311556207476}
   m_Layer: 5
   m_Name: MainMenuView
   m_TagString: Untagged
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3759112989850740568
+--- !u!114 &5679205311556207476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,10 +570,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1621896211338641700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b62c989e949d14298f7038041be95f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ad13964e84a42a1ac9ee1588cc71138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewConfig: {fileID: 11400000, guid: 45c806bff516f114bab05af316901d9c, type: 2}
+  UIViewState: {fileID: 11400000, guid: 1b55a8a5def97d247a2e40597423ea00, type: 2}
   Container: {fileID: 1621896210430924672}
   Canvas: {fileID: 1621896211338641755}
   CanvasGroup: {fileID: 6090244668193209988}
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3759112989850740568}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI.Views.MainMenuView, Assembly-CSharp
         m_MethodName: ShowSettings
         m_Mode: 1
@@ -1180,8 +1180,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3759112989850740568}
-        m_TargetAssemblyTypeName: UI.Views.MainMenuView, Assembly-CSharp
+      - m_Target: {fileID: 5679205311556207476}
+        m_TargetAssemblyTypeName: UI.Views.NewMainMenuView, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.34901962}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

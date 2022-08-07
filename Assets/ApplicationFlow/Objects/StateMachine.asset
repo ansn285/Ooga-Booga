@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45aa18b53ace2f6449a618ec43ee68f8, type: 3}
+  m_Script: {fileID: 11500000, guid: f62e44dedc5741e2bc5115cdf70ad113, type: 3}
   m_Name: StateMachine
   m_EditorClassIdentifier: 
-  BootState: {fileID: 11400000, guid: d19b2a224e5a617428f28454afbf08b0, type: 2}
-  CurrentState: {fileID: 0}
-  PreviousState: {fileID: 0}
-  CurrentTransition: {fileID: 0}
-  BackTransition: {fileID: 0}
+  BootState: {fileID: 11400000, guid: 14142d2312777404eaedbd90af4c0ed4, type: 2}

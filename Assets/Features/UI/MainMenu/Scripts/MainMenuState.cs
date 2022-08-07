@@ -1,9 +1,9 @@
-using AN.StateMachine;
+﻿using AN.StateMachine;
 using UnityEngine;
 
 namespace UI.Views
 {
-    [CreateAssetMenu(fileName = "MainMenuState", menuName = "State Machine/States/Main Menu State")]
+    [CreateAssetMenu(fileName = "NewMainMenuState", menuName = "State Machine/States/New Main Menu State")]
     public class MainMenuState : UIViewState
     {
         [SerializeField] protected Transition SettingsTransition;

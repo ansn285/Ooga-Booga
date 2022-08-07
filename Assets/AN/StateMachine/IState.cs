@@ -1,13 +1,11 @@
-using System.Collections;
-
-namespace AN.StateMachine
+﻿namespace AN.StateMachine
 {
     public interface IState
     {
-        void TransitionTo(State state, Transition transition);
-
         public void Back(State state);
-
-        IEnumerator CleanupAllPausedStates(State state);
+        
+        void TransitionTo(State state, Transition transition);
+        
+        void CleanupAllPausedStates(State state);
     }
 }

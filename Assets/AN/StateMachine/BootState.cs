@@ -1,11 +1,9 @@
-using System;
+﻿using System;
 using System.Collections;
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 using AN.Variables;
 using Gameplay.Player;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AN.StateMachine
 {
@@ -22,9 +20,9 @@ namespace AN.StateMachine
         [NonSerialized] private string _sceneName;
         
 
-        public override IEnumerator Init(IState listener)
+        public override void Init(IState listener)
         {
-            yield return base.Init(listener);
+            base.Init(listener);
             _sceneName = LevelsCollection.GetLevelFromNumber(CurrentLevel).LevelName;
             _sceneLoadingOperation = SceneManager.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
         }
@@ -48,7 +46,7 @@ namespace AN.StateMachine
 
             _player.transform.position = PlayerPosition.GetValue();
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(ExitTime);
             End();
         }
     }

@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52dc021fe70e7be4695569602b573745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppStateMachine: {fileID: 11400000, guid: 8b32be8d0deabe24692c816714258c46, type: 2}
+  FiniteStateMachine: {fileID: 11400000, guid: 57fdceccba1496741be6071f970a807a, type: 2}
 --- !u!4 &767450350
 Transform:
   m_ObjectHideFlags: 0
