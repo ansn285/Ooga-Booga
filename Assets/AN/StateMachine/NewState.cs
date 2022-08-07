@@ -9,7 +9,7 @@ namespace AN.StateMachine
         [SerializeField] public bool HasExitTime;
         [SerializeField] public float ExitTime;
         
-        [SerializeField] protected Transition NextTransition;
+        [SerializeField] protected NewTransition NextTransition;
 
         protected INewState _Listener;
 
@@ -50,12 +50,12 @@ namespace AN.StateMachine
 
         protected virtual void End()
         {
-            // _Listener.TransitionTo(this, NextTransition);
+            _Listener.TransitionTo(this, NextTransition);
         }
 
         protected virtual void Back()
         {
-            // _Listener.Back(this);
+            _Listener.Back(this);
         }
     }
 }

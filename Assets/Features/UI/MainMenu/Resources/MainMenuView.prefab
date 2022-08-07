@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 1621896211338641754}
   - component: {fileID: 1621896211338641701}
   - component: {fileID: 3759112989850740568}
+  - component: {fileID: 5679205311556207476}
   m_Layer: 5
   m_Name: MainMenuView
   m_TagString: Untagged
@@ -568,11 +569,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621896211338641700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0b62c989e949d14298f7038041be95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ViewConfig: {fileID: 11400000, guid: 45c806bff516f114bab05af316901d9c, type: 2}
+  Container: {fileID: 1621896210430924672}
+  Canvas: {fileID: 1621896211338641755}
+  CanvasGroup: {fileID: 6090244668193209988}
+  OverlayImage: {fileID: 936875338310725736}
+--- !u!114 &5679205311556207476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621896211338641700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad13964e84a42a1ac9ee1588cc71138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIViewState: {fileID: 11400000, guid: 1b55a8a5def97d247a2e40597423ea00, type: 2}
   ViewConfig: {fileID: 11400000, guid: 45c806bff516f114bab05af316901d9c, type: 2}
   Container: {fileID: 1621896210430924672}
   Canvas: {fileID: 1621896211338641755}

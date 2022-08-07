@@ -10,7 +10,7 @@ namespace ApplicationBase
         [SerializeField] private NewFSM NewFSM;
         private void Start()
         {
-            StartCoroutine(AppStateMachine.Tick());
+            // StartCoroutine(AppStateMachine.Tick());
             NewFSM.Init(this);
         }
 
