@@ -6,17 +6,15 @@ namespace ApplicationBase
 {
     public class ApplicationBase : MonoBehaviour, ITransitionToNextState
     {
-        [SerializeField] private FiniteStateMachine AppStateMachine;
-        [SerializeField] private NewFSM NewFSM;
+        [SerializeField] private FiniteStateMachine FiniteStateMachine;
         private void Start()
         {
-            // StartCoroutine(AppStateMachine.Tick());
-            NewFSM.Init(this);
+            FiniteStateMachine.Init(this);
         }
 
         void ITransitionToNextState.TransitionToNextState()
         {
-            StartCoroutine(NewFSM.TransitionToNextState());
+            StartCoroutine(FiniteStateMachine.TransitionToNextState());
         }
     }
 }

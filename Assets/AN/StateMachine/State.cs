@@ -3,21 +3,24 @@ using UnityEngine;
 
 namespace AN.StateMachine
 {
+    [CreateAssetMenu(fileName = "State", menuName = "State Machine/States/State")]
     public class State : ScriptableObject
     {
+        [SerializeField] public bool HasExitTime;
+        [SerializeField] public float ExitTime;
+        
         [SerializeField] protected Transition NextTransition;
 
         protected IState _Listener;
 
-        public virtual IEnumerator Init(IState listener)
+        public virtual void Init(IState listener)
         {
             _Listener = listener;
-            yield break;
         }
 
-        public virtual IEnumerator Execute()
+        public virtual void Execute()
         {
-            yield break;
+            
         }
 
         public virtual IEnumerator Tick()
@@ -25,24 +28,24 @@ namespace AN.StateMachine
             yield break;
         }
 
-        public virtual IEnumerator Exit()
+        public virtual void Exit()
         {
-            yield break;
+            
         }
 
-        public virtual IEnumerator Resume()
+        public virtual void Resume()
         {
-            yield break;
+            
         }
 
-        public virtual IEnumerator Pause(bool hideView)
+        public virtual void Pause(bool hideView)
         {
-            yield break;
+            
         }
 
-        public virtual IEnumerator Cleanup()
+        public virtual void Cleanup()
         {
-            yield break;
+            
         }
 
         protected virtual void End()

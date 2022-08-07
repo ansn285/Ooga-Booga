@@ -1,6 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,23 +7,15 @@ namespace UI.Views
 {
     public class MainMenuView : UIView
     {
-        [SerializeField] private CanvasGroup CanvasGroup;
         [SerializeField] private Image OverlayImage;
 
-        private MainMenuState MainMenuState => UIViewState as MainMenuState;
-        private Vector3 _originalScale;
         private Sequence _viewAnimationSequence;
         private Tween _overlayFadeTween;
+        
+        private MainMenuState MainMenuState => UIViewState as MainMenuState;
 
         #region Mono Methods
-
-        private void OnEnable()
-        {
-            CanvasGroup.DOFade(0, 0f);
-            _originalScale = Container.localScale;
-            Container.localScale += Vector3.one * ViewConfig.ViewScaleFactor;
-        }
-
+        
         private void OnDisable()
         {
             _viewAnimationSequence?.Kill();
@@ -35,28 +26,25 @@ namespace UI.Views
 
         #region Overridden Methods
 
-        public override IEnumerator Show()
+        protected override IEnumerator PlayShowAnimation()
         {
-            yield return base.Show();
-
             _viewAnimationSequence?.Kill();
             _viewAnimationSequence = DOTween.Sequence()
-                              .Join(CanvasGroup.DOFade(1, ViewConfig.ViewInDuration))
-                              .Join(Container.DOScale(_originalScale, ViewConfig.ViewInDuration));
+                .Join(CanvasGroup.DOFade(1, ViewConfig.ViewInDuration))
+                .Join(Container.DOScale(_originalScale, ViewConfig.ViewInDuration));
             _viewAnimationSequence.Play();
+
             yield break;
         }
 
-        public override IEnumerator Hide()
+        protected override IEnumerator PlayHideAnimation()
         {
             _viewAnimationSequence?.Kill();
             _viewAnimationSequence = DOTween.Sequence()
-                              .Join(CanvasGroup.DOFade(0, ViewConfig.ViewInDuration))
-                              .Join(Container.DOScale(_originalScale + Vector3.one * ViewConfig.ViewScaleFactor, ViewConfig.ViewInDuration));
+                .Join(CanvasGroup.DOFade(0, ViewConfig.ViewInDuration))
+                .Join(Container.DOScale(_originalScale + Vector3.one * ViewConfig.ViewScaleFactor, ViewConfig.ViewInDuration));
 
             yield return _viewAnimationSequence.Play().WaitForCompletion();
-
-            yield return base.Hide();
         }
 
         #endregion
@@ -80,7 +68,7 @@ namespace UI.Views
         public void ShowQuitGameView()
         {
             Application.Quit();
-            // MainMenuState.ShowQuitGameView();
+            MainMenuState.ShowQuitGameView();
         }
     }
 }

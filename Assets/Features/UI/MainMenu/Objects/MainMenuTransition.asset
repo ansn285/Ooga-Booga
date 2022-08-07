@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1ec14754874f24aae8162ccae93ac3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dcc71cc995c478998047bbb167c18f6, type: 3}
   m_Name: MainMenuTransition
   m_EditorClassIdentifier: 
-  ToState: {fileID: 11400000, guid: ed2d0120805605a4db825cddf0435287, type: 2}
+  ToState: {fileID: 11400000, guid: 1b55a8a5def97d247a2e40597423ea00, type: 2}
   PausesPreviousState: 0
   HidesPreviousStateOnPause: 0

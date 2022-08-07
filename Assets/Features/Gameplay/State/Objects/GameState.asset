@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcd98562c2472984eb0cbdad4df79734, type: 3}
+  m_Script: {fileID: 11500000, guid: dbd22964b1684957b6ee4c6ff46b6471, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
-  NextTransition: {fileID: 11400000, guid: dca3992a9af3f8246be387661246de12, type: 2}
+  HasExitTime: 0
+  ExitTime: 0
+  NextTransition: {fileID: 11400000, guid: eec341463a1e9d04896821493bf77c86, type: 2}
   SettingsTransition: {fileID: 11400000, guid: 1cf9b34c9ab70b64aa53190b3608356e, type: 2}
   GameHudPrefab: {fileID: 2986131514635962757, guid: f4c6912da38c9a449ae6091060f17e5a, type: 3}
   PlayerPosition: {fileID: 11400000, guid: fe7ad636dab339b4c98fcccec6cd3ae5, type: 2}
