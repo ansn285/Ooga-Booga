@@ -13,12 +13,11 @@ namespace AN.StateMachine
         [SerializeField] protected Transition SettingsTransition;
         [SerializeField] protected GameHud GameHudPrefab;
 
-        [SerializeField] protected PlayerPosition PlayerPosition;
+        [SerializeField] protected PlayerCoordinates PlayerPosition;
         [SerializeField] protected Bool GameStateStarted;
 
         [NonSerialized] protected GameHud _gameHud;
-
-        protected Player _player;
+        [NonSerialized] protected Player _player;
 
         public override void Init(IState listener)
         {
@@ -27,7 +26,7 @@ namespace AN.StateMachine
             _gameHud = Instantiate(GameHudPrefab);
             _gameHud.GameState = this;
             GameStateStarted.SetValue(true);
-            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            _player = SpawnPlayer.GetPlayer();
             _player.EnableMovement();
         }
 
@@ -35,12 +34,12 @@ namespace AN.StateMachine
         {
             yield return base.Tick();
 
-            PlayerPosition.SetValue(_player.transform.position);
+            PlayerPosition.SetValue(_player.transform.position, _player.transform.rotation.eulerAngles);
 
-            if (PlayerPosition.GetValue().y < -50f)
+            if (PlayerPosition.GetPosition().y < -50f)
             {
                 PlayerPosition.ResetPlayerPosition();
-                _player.transform.position = PlayerPosition.GetValue();
+                _player.transform.position = PlayerPosition.GetPosition();
             }
         }
 

@@ -13,13 +13,12 @@ namespace AN.StateMachine
         [SerializeField] private Int CurrentLevel;
         [SerializeField] protected LevelsCollection LevelsCollection;
         [SerializeField] protected Player PlayerPrefab;
-        [SerializeField] protected Vector3Persistent PlayerPosition;
+        [SerializeField] protected PlayerCoordinates PlayerPosition;
 
         [NonSerialized] private Player _player;
         [NonSerialized] private AsyncOperation _sceneLoadingOperation;
         [NonSerialized] private string _sceneName;
         
-
         public override void Init(IState listener)
         {
             base.Init(listener);
@@ -39,12 +38,8 @@ namespace AN.StateMachine
             Scene scene = SceneManager.GetSceneByName(_sceneName);
             SceneManager.SetActiveScene(scene);
 
-            if (_player == null)
-            {
-                _player = Instantiate(PlayerPrefab);
-            }
-
-            _player.transform.position = PlayerPosition.GetValue();
+            PlayerPosition.Load();
+            SpawnPlayer.Init(PlayerPrefab, PlayerPosition.GetPosition(), PlayerPosition.GetRotation());
 
             yield return new WaitForSeconds(ExitTime);
             End();
