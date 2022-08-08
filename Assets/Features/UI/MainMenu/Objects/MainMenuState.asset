@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainMenuState
   m_EditorClassIdentifier: 
   HasExitTime: 1
-  ExitTime: 1.5
+  ExitTime: 1
   NextTransition: {fileID: 11400000, guid: dc00abe77d3c9a645ad708d608924931, type: 2}
   UIViewConfig: {fileID: 11400000, guid: 45c806bff516f114bab05af316901d9c, type: 2}
   ViewName: MainMenuView
