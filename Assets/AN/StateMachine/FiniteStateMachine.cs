@@ -68,24 +68,14 @@ namespace AN.StateMachine
             _Listener.TransitionToNextState();
         }
 
-        // public IEnumerator Tick()
-        // {
-            // yield break;
-            // if (CurrentTransition == null) yield break;
-            //
-            // if (CurrentState == null)
-            // {
-            //     ChangeState(BootState);
-            //     BackTransition = CreateInstance<NewTransition>();
-            // }
-            //
-            // while (true)
-            // {
-            //     yield return CheckTransition();
-            //     yield return CurrentState.Tick();
-            //     yield return null;
-            // }
-        // }
+        public IEnumerator Tick()
+        {
+            while (true)
+            {
+                yield return CurrentState.Tick();
+                yield return null;
+            }
+        }
 
         public IEnumerator TransitionToNextState()
         {

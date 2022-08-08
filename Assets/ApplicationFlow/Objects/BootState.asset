@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BootState
   m_EditorClassIdentifier: 
   HasExitTime: 1
-  ExitTime: 2
+  ExitTime: 1
   NextTransition: {fileID: 11400000, guid: 8b5bb01986f816a4d8c5fc03cbaa9d0b, type: 2}
   CurrentLevel: {fileID: 11400000, guid: 5ae4cf2764519e244b85b46541d5dcf9, type: 2}
   LevelsCollection: {fileID: 11400000, guid: ed620b55d9dda53458f7e69bd5e78177, type: 2}

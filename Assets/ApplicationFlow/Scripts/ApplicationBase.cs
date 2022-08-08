@@ -10,6 +10,7 @@ namespace ApplicationBase
         private void Start()
         {
             FiniteStateMachine.Init(this);
+            StartCoroutine(FiniteStateMachine.Tick());
         }
 
         void ITransitionToNextState.TransitionToNextState()
