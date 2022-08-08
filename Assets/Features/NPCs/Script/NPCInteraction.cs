@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using AN.Events;
+using UI.InteractionPanel;
 
 namespace Gameplay.NPC 
 {
@@ -46,12 +47,12 @@ namespace Gameplay.NPC
 
         private void ShowInteractionButton()
         {
-            InteractionButtonAnimator.Play("InteractionButtonIn");
+            InteractionPanelPooler.ShowPanel(transform.position);
         }
 
         private void HideInteractionButton()
         {
-            InteractionButtonAnimator.Play("InteractionButtonOut");
+            InteractionPanelPooler.ClosePanel();
         }
 
         private void StartInteractionBullshit()
